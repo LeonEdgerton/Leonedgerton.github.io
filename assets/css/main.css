@@ -2083,7 +2083,7 @@ input, select, textarea {
 		}
 
 			#header .icons a {
-				color: #41484c;
+				color: #2b998a;
 				-moz-transition: color 0.35s ease-in-out;
 				-webkit-transition: color 0.35s ease-in-out;
 				-ms-transition: color 0.35s ease-in-out;
@@ -2169,7 +2169,7 @@ input, select, textarea {
 				}
 
 					#nav ul li a.active span:before {
-						color: #e27689;
+						color: #2b998a;
 					}
 
 /* Footer */
@@ -2629,5 +2629,45 @@ input, select, textarea {
 				#footer .copyright li:first-child {
 					margin-top: 0;
 				}
+
+/* Force card wrappers in a row to stretch to equal height */
+#portfolio .row > [class*="col-"] {
+    display: flex !important;
+}
+
+/* Force each box container to match height and stack cleanly */
+#portfolio .item {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin-bottom: 30px !important;
+    background: #ffffff !important;
+    border-radius: 4px !important;
+    overflow: hidden !important;
+}
+
+/* Lock the image container to a fixed widescreen box */
+#portfolio .item .image {
+    display: block !important;
+    width: 100% !important;
+    height: 200px !important; /* Fixed image display height */
+    overflow: hidden !important;
+    margin: 0 !important;
+}
+
+/* Crop image cleanly without stretching or distortion */
+#portfolio .item .image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important; /* Clips taller images like pic04.jpg perfectly */
+}
+
+/* Align text titles cleanly at the bottom of the card */
+#portfolio .item header {
+    margin-top: auto !important;
+    padding: 15px !important;
+    text-align: center !important;
+}
 
 	}
