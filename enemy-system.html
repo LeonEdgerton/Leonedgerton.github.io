@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<!-- Prologue by HTML5 UP -->
+<html>
+	<head>
+		<title>Enemy Layer System - Leon Edgerton</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header / Sidebar -->
+		<div id="header">
+			<div class="top">
+
+				<!-- Logo -->
+				<div id="logo">
+					<h1 id="title">Leon Edgerton</h1>
+					<p>Game Development Student / Aspiring Gameplay & Technical Designer</p>
+				</div>
+
+				<!-- Nav -->
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html#portfolio" id="portfolio-link"><span class="icon solid fa-th">Portfolio</span></a></li>
+						<li><a href="index.html#about" id="about-link"><span class="icon solid fa-user">About Me</span></a></li>
+						<li><a href="index.html#contact" id="contact-link"><span class="icon solid fa-envelope">Contact</span></a></li>
+					</ul>
+					<div style="text-align: center; margin-top: 70px;">
+						<span class="image avatar48">
+							<img src="images/pic01.png" alt="" />
+						</span>
+					</div>
+				</nav>
+
+			</div>
+
+			<div class="bottom" style="padding-right: 0.1em !important; padding-bottom: 0.1em !important;">
+				<!-- Social Icons -->
+				<ul class="icons" style="display: flex !important; justify-content: flex-end !important; align-items: center !important; margin: 0 !important; width: 100% !important;">
+					<li><a href="https://www.linkedin.com/in/leon-edgerton-b7a861255/" class="icon brands fa-linkedin" target="_blank" rel="noopener noreferrer" style="font-size: 1.6em !important;">
+					<span class="label">LinkedIn</span></a></li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- Main -->
+		<div id="main">
+
+			<section class="two" style="padding-top: 3em !important;">
+				<div class="container">
+
+					<header>
+						<a href="index.html#portfolio" style="border-bottom: none; font-size: 0.9em;">&larr; Back to Portfolio Grid</a>
+						<h2 style="margin-top: 0.5em; margin-bottom: 0.2em;">Data-Driven Enemy Layer System</h2>
+						<p style="color: #444; font-weight: bold;">Unreal Engine 5 | Blueprint & Data-Driven Architecture</p>
+					</header>
+
+					<!-- HERO CLIP / VIDEO SECTION -->
+					<div style="width: 100%; max-width: 900px; margin: 0 auto 2.5em auto; border-radius: 6px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+						<video width="100%" autoplay loop muted playsinline style="display: block;">
+							<source src="videos/EnemyLayer.mp4" type="video/mp4">
+							Your browser does not support HTML5 video.
+						</video>
+					</div>
+
+					<!-- TECHNICAL BREAKDOWN GRID -->
+					<div style="text-align: left; max-width: 900px; margin: 0 auto;">
+
+						<h3 style="border-bottom: 2px solid #ddd; padding-bottom: 0.3em; margin-bottom: 0.8em;">Overview</h3>
+						<p>
+							Engineered a modular, data-driven enemy mutation framework allowing runtime state transitions across multiple layer tiers. The system uses a centralised data asset structure to dynamically adjust enemy stats, mesh components, and behavior profiles without hardcoding individual enemy variants.
+						</p>
+
+						<h3 style="border-bottom: 2px solid #ddd; padding-bottom: 0.3em; margin-top: 1.5em; margin-bottom: 0.8em;">Key Technical Features</h3>
+						<ul>
+							<li><strong>Data-Driven Layer Architecture:</strong> Leverages Unreal Engine Data Assets (Primary Data Assets) to encapsulate tier parameters (health multipliers, speed offsets, damage multipliers, material instances)</li>
+							<li><strong>Dynamic State Mutation:</strong> Encapsulates logic for transitioning enemies sequentially between various tiers.</li>
+							<li><strong>Performance Optimisation:</strong> Minimises runtime object instantiation by mutating component parameters on existing actors rather than spawning new dynamic classes.</li>
+						</ul>
+
+						<h3 style="border-bottom: 2px solid #ddd; padding-bottom: 0.3em; margin-top: 1.5em; margin-bottom: 0.8em;">Architecture Breakdown</h3>
+						<p>
+							<em>(Place code snippet screenshots, Blueprint logic graphs, or data asset struct snippets here)</em>
+						</p>
+
+					</div>
+
+				</div>
+			</section>
+
+		</div>
+
+		<!-- Footer -->
+		<div id="footer">
+			<ul class="copyright">
+				<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+			</ul>
+		</div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
