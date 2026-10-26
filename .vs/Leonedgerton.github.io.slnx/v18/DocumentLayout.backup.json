@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:index.html||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\leone\\Documents\\GitHub\\Leonedgerton.github.io\\NewFile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NewFile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\leone\\Documents\\GitHub\\Leonedgerton.github.io\\enemy-system.html||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:enemy-system.html||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
@@ -22,11 +26,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
+              "Title": "NewFile",
+              "DocumentMoniker": "C:\\Users\\leone\\Documents\\GitHub\\Leonedgerton.github.io\\NewFile",
+              "RelativeDocumentMoniker": "NewFile",
+              "ToolTip": "C:\\Users\\leone\\Documents\\GitHub\\Leonedgerton.github.io\\NewFile",
+              "RelativeToolTip": "NewFile",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-10-26T20:43:23.589Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "main.css",
               "DocumentMoniker": "C:\\Users\\leone\\Documents\\GitHub\\Leonedgerton.github.io\\assets\\css\\main.css",
               "RelativeDocumentMoniker": "assets\\css\\main.css",
@@ -34,12 +51,11 @@
               "RelativeToolTip": "assets\\css\\main.css",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-10-18T22:10:26.112Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-18T22:10:26.112Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "enemy-system.html",
               "DocumentMoniker": "C:\\Users\\leone\\Documents\\GitHub\\Leonedgerton.github.io\\enemy-system.html",
               "RelativeDocumentMoniker": "enemy-system.html",
@@ -47,8 +63,7 @@
               "RelativeToolTip": "enemy-system.html",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAACUAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-10-18T20:30:49.486Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-18T20:30:49.486Z"
             },
             {
               "$type": "Document",
@@ -58,7 +73,7 @@
               "RelativeDocumentMoniker": "index.html",
               "ToolTip": "C:\\Users\\leone\\Documents\\GitHub\\Leonedgerton.github.io\\index.html",
               "RelativeToolTip": "index.html",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAAEMAAAA+AAAAAAAAAA==",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAAAFkAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2026-10-18T20:30:11.156Z",
               "EditorCaption": ""
