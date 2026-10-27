@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<!-- Prologue by HTML5 UP -->
+<html>
+	<head>
+		<title>Enemy Layer System - Leon Edgerton</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header / Sidebar -->
+		<div id="header">
+			<div class="top">
+
+				<!-- Logo -->
+				<div id="logo">
+					<h1 id="title">Leon Edgerton</h1>
+					<p>Game Development Student / Aspiring Gameplay & Technical Designer</p>
+				</div>
+
+				<!-- Nav -->
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html#portfolio" id="portfolio-link"><span class="icon solid fa-th">Portfolio</span></a></li>
+						<li><a href="index.html#about" id="about-link"><span class="icon solid fa-user">About Me</span></a></li>
+						<li><a href="index.html#contact" id="contact-link"><span class="icon solid fa-envelope">Contact</span></a></li>
+					</ul>
+					<div style="text-align: center; margin-top: 70px;">
+						<span class="image avatar48">
+							<img src="images/pic01.png" alt="" />
+						</span>
+					</div>
+				</nav>
+
+			</div>
+
+			<div class="bottom" style="padding-right: 0.1em !important; padding-bottom: 0.1em !important;">
+				<!-- Social Icons -->
+				<ul class="icons" style="display: flex !important; justify-content: flex-end !important; align-items: center !important; margin: 0 !important; width: 100% !important;">
+					<li><a href="https://www.linkedin.com/in/leon-edgerton-b7a861255/" class="icon brands fa-linkedin" target="_blank" rel="noopener noreferrer" style="font-size: 1.6em !important;">
+					<span class="label">LinkedIn</span></a></li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- Main -->
+		<div id="main">
+
+			<section class="two" style="padding-top: 3em !important;">
+				<div class="container">
+
+					<header>
+						<a href="index.html#portfolio" style="border-bottom: none; font-size: 0.9em;">&larr; Back to Portfolio Grid</a>
+						<h2 style="margin-top: 0.5em; margin-bottom: 0.2em;">Data-Driven Enemy Layer System</h2>
+						<p style="color: #444; font-weight: bold;">Unreal Engine 5 | Blueprint &amp; Data-Driven Architecture</p>
+					</header>
+
+					<!-- HERO CLIP / VIDEO SECTION -->
+					<div style="width: 100%; max-width: 900px; margin: 0 auto 2.5em auto; border-radius: 6px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+						<video width="100%" autoplay loop muted playsinline style="display: block;">
+							<source src="videos/TurretSystemVideo.mp4" type="video/mp4">
+							Your browser does not support HTML5 video.
+						</video>
+					</div>
+
+					<!-- TECHNICAL BREAKDOWN GRID -->
+					<div style="text-align: left; max-width: 900px; margin: 0 auto;">
+
+						<h3 style="border-bottom: 2px solid #ddd; padding-bottom: 0.3em; margin-bottom: 0.8em;">Overview</h3>
+						<p>
+							Engineered a modular, data-driven enemy mutation framework allowing runtime state transitions across multiple layer tiers. The system uses a centralised data asset structure to dynamically adjust enemy stats, mesh components, and behavior profiles without hardcoding individual enemy variants.
+						</p>
+
+						<h3 style="border-bottom: 2px solid #ddd; padding-bottom: 0.3em; margin-top: 1.5em; margin-bottom: 0.8em;">Key Technical Features</h3>
+						<ul>
+							<li><strong>Data-Driven Layer Architecture:</strong> Leverages Unreal Engine Data Assets (Primary Data Assets) to encapsulate tier parameters (health multipliers, speed offsets, damage multipliers, material instances)</li>
+							<li><strong>Dynamic State Mutation:</strong> Encapsulates logic for transitioning enemies sequentially between various tiers.</li>
+							<li><strong>Performance Optimisation:</strong> Minimises runtime object instantiation by mutating component parameters on existing actors rather than spawning new dynamic classes.</li>
+						</ul>
+
+					</div>
+
+					<h3 style="border-bottom: 2px solid #ddd; padding-bottom: 0.3em; margin-top: 1.5em; margin-bottom: 0.8em;">Architecture Breakdown</h3>
+
+					<p>
+						The system is built on a modular, data-driven framework separating configuration data from actor execution logic. Below is the breakdown of its core components:
+					</p>
+
+					<!-- Part 1: Data Struct -->
+					<div style="margin: 1.5em 0;">
+						<h4 style="color: #333; margin-bottom: 0.5em;">1. Data Schema &amp; Primary Data Asset (ST_EnemyLayerData &amp; DA_Enemy)</h4>
+						
+						<img src="images/DA_Enemy_and_Struct.png" alt="Enemy Layer Data Structure" style="width: 100%; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 0.8em;" />
+						<p>
+							To decouple configuration data from actor execution logic, the system uses a custom structure (<code>ST_EnemyLayerData</code>) paired with a Primary Data Asset class (<code>DA_EnemyDefinition</code>)
+						</p>
+
+						<p>
+							Instead of hardcoding tier values inside the enemy blueprint, all tier-specific parameters such as <strong>Speed, Scale, Material Instances, and Damage Thresholds</strong> are authored inside modular data asset instances (<code>DA_Enemy</code>). This allows multiple enemy variants to share the same base behavior while utilising entirely different data recipes without inflating actor memory.
+						</p>
+					</div>
+
+					<!-- Part 2: Apply Layer Data Function -->
+					<div style="margin: 1.5em 0;">
+						<h4 style="color: #333; margin-bottom: 0.5em;">2. Runtime Component Mutation (ApplyLayerData)</h4>
+					
+						<img src="images/ApplyLayerData.png" alt="Apply Layer Data Function" style="width: 100%; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 0.8em;" />
+						<p>
+							Housed within the base enemy actor (BP_BaseEnemy), this function handles runtime state mutation. When triggered, it queries the assigned <code>DA_Enemy</code> data asset using the <code>Current Layer Index</code>, breaks the structure data, and dynamically updates the actor's world scale, mesh material instance, and movement speed parameters on the active component instances without respawning the actor.
+						</p>
+					</div>
+
+					<!-- Part 3: Damage & State Progression Logic -->
+					<div style="margin: 1.5em 0;">
+						<h4 style="color: #333; margin-bottom: 0.5em;">3. Damage Handling &amp; Layer Progression (Event AnyDamage)</h4>
+						
+						<img src="images/EventAnyDamage.png" alt="Event AnyDamage Logic" style="width: 100%; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 0.8em;" />
+						<p>
+							Intercepts incoming damage events, evaluates the array length of the active data asset, and increments the layer index. A branch node checks if the final layer has been breached; if false, it triggers <code>ApplyLayerData</code> to progress the enemy to the next tier. If true, it executes game mode point awards and safely destroys the actor.
+						</p>
+					</div>
+					
+					<!-- Part 4: Future Implementations & Scalability-->
+					<h3 style="border-bottom: 2px solid #ddd; padding-bottom: 0.3em; margin-top: 1.8em; margin-bottom: 0.8em;">Future Implementations &amp; Scalability</h3>
+
+					<ul style="line-height: 1.6; margin-left: 1.2em;">
+						<li style="margin-bottom: 0.8em;">
+							<strong>Time Based Tier Regeneration (Reverse State Transitions):</strong> Extend the state machine to support automated tier regeneration after a period of non combat. If left undamaged, enemies would transition back up the layer hierarchy (e.g., Tier 1 &rarr; Tier 2 &rarr; Tier 3), adding tactical priority for the player to finish off damaged targets.
+						</li>
+						<li style="margin-bottom: 0.8em;">
+							<strong>Modular Health Component Integration:</strong> Refactor the layer progression logic to interface with a dedicated Health Component. Instead of instant state shifts on single hits, each tier would query a specific health threshold directly from the <code>PrimaryDataAsset</code>, requiring threshold based damage accumulation before breaking into lower tiers.
+						</li>
+						<li style="margin-bottom: 0.8em;">
+							<strong>Dynamic Gameplay Mutators:</strong> Expand the structure schema to support tier specific gameplay tags allowing higher tiers to swap AI movement profiles, trigger specialised sound effects, or alter particle effect emitters on layer destruction.
+						</li>
+					</ul>
+
+				</div>
+			</section>
+
+		</div>
+
+		<!-- Footer -->
+		<div id="footer">
+			<ul class="copyright">
+				<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+			</ul>
+		</div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
