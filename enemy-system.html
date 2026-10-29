@@ -16,7 +16,7 @@
 				<!-- Logo -->
 				<div id="logo">
 					<h1 id="title">Leon Edgerton</h1>
-					<p>Game Development Student / Aspiring Gameplay & Technical Designer</p>
+					<p>Level 5 Game Development Student (University of Staffordshire) / Aspiring Technical Designer Specialising in Gameplay Systems & Data-Driven Architecture</p>
 				</div>
 
 				<!-- Nav -->
@@ -77,6 +77,7 @@
 							<li><strong>Data-Driven Layer Architecture:</strong> Leverages Unreal Engine Data Assets (Primary Data Assets) to encapsulate tier parameters (health multipliers, speed offsets, damage multipliers, material instances)</li>
 							<li><strong>Dynamic State Mutation:</strong> Encapsulates logic for transitioning enemies sequentially between various tiers.</li>
 							<li><strong>Performance Optimisation:</strong> Minimises runtime object instantiation by mutating component parameters on existing actors rather than spawning new dynamic classes.</li>
+							<li><strong>Data-Driven Wave & Encounter Scheduler:</strong> Architected a modular wave composition system using nested Unreal Structs (ST_RoundData containing an array of ST_EnemyGroup structs). This decouples wave pacing from level logic, allowing designers to sequence enemy tiers, specific spawn counts, and cadences (SpawnDelay) across multiple rounds entirely within a spreadsheet like data table.</li>
 						</ul>
 
 					</div>
@@ -120,8 +121,51 @@
 							Intercepts incoming damage events, evaluates the array length of the active data asset, and increments the layer index. A branch node checks if the final layer has been breached; if false, it triggers <code>ApplyLayerData</code> to progress the enemy to the next tier. If true, it executes game mode point awards and safely destroys the actor.
 						</p>
 					</div>
+
+					<!-- Part 4: Nested Struct Architecture  -->
+					<div style="margin: 1.5em 0;">
+						<h4 style="color: #333; margin-bottom: 0.5em;">4. Nested Struct Architecture (ST_EnemyGroup)</h4>
+						
+						<img src="images/ST_EnemyGroup.png" alt="Nested Struct Architecture" style="width: 100%; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 0.8em;" />
+						<p>
+							Designed a granular data container (ST_EnemyGroup) that pairs an integer EnemyLayer identifier with a specific Count. This establishes a reusable composition rule, allowing a single wave entry to define which enemy tier to spawn and how many of them to deploy.
+						</p>
+					</div>
+
+					<!-- Part 5: Round Definition &amp; Timing Control -->
+					<div style="margin: 1.5em 0;">
+						<h4 style="color: #333; margin-bottom: 0.5em;">5. Round Definition &amp; Timing Control (ST_RoundData)</h4>
+						
+						<img src="images/ST_RoundData.png" alt="Round Definition &amp; Timing Control" style="width: 100%; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 0.8em;" />
+						<p>
+							Built a parent structural schema (ST_RoundData) that maps a RoundNumber integer to an array of ST_EnemyGroup entries, paired with a float SpawnDelay. This links group composition directly to cadence timing, defining how fast enemies stream into the level during that specific wave.
+						</p>
+					</div>
+
+					<!-- Part 6: Data Table Driven Balancing &amp; Live Tuning -->
+					<div style="margin: 1.5em 0;">
+						<h4 style="color: #333; margin-bottom: 0.5em;">6. Data Table Driven Balancing &amp; Live Tuning (DT_RoundData)</h4>
+						
+						<img src="images/DT_RoundData.png" alt="Data Table Driven Balancing & Live Tuning (DT_RoundData)" style="width: 100%; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 0.8em;" />
+						<p>
+							Consolidated all session pacing into a single Data Table (DT_RoundData). As seen in Round 19, designers can layer multiple enemy groups (e.g., mixing 30 units of Tier 2, 20 units of Tier 1, and 45 units of Tier 2) with a uniform spawn interval (1.5s). This provides a centralised spreadsheet interface to balance game progression, difficulty scaling, and wave pacing without hardcoding logic or modifying map files.
+						</p>
+					</div>
+
+					<!-- Part 7: Runtime Data Parsing &amp; Queue Management -->
+					<div style="margin: 1.5em 0;">
+						<h4 style="color: #333; margin-bottom: 0.5em;">7. Runtime Data Parsing &amp; Queue Management</h4>
+						
+						<img src="images/EnemySpawnImplementation.png" alt="4. Runtime Data Parsing &amp; Queue Management" style="width: 100%; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 0.8em;" />
+						<p>
+							The system increments the Current Round integer, formats a string to dynamically query the corresponding row in DT_RoundData, and flushes any existing entries from the Enemy Layer Queue.
+						</p>
+						<p>
+							It breaks the retrieved struct data to cache the round's specific SpawnDelay, then iterates through the nested EnemyLayers array, passing the grouped tier and count data into the runtime spawn pipeline to instantiate the correct enemies sequentially.
+						</p>
+					</div>
 					
-					<!-- Part 4: Future Implementations & Scalability-->
+					<!-- Part 8: Future Implementations & Scalability-->
 					<h3 style="border-bottom: 2px solid #ddd; padding-bottom: 0.3em; margin-top: 1.8em; margin-bottom: 0.8em;">Future Implementations &amp; Scalability</h3>
 
 					<ul style="line-height: 1.6; margin-left: 1.2em;">
