@@ -53,7 +53,7 @@
 					<header>
 						<a href="index.html#portfolio" style="border-bottom: none; font-size: 0.9em;">&larr; Back to Portfolio Grid</a>
 						<h2 style="margin-top: 0.5em; margin-bottom: 0.2em;">Data-Driven Enemy Layer System</h2>
-						<p style="color: #444; font-weight: bold;">Unreal Engine 5 | Blueprint &amp; Data-Driven Architecture</p>
+						<p style="color: #444; font-weight: bold;">Unreal Engine 5 | C++/ Blueprint &amp; Data-Driven Architecture</p>
 					</header>
 
 					<!-- HERO CLIP / VIDEO SECTION -->
@@ -163,6 +163,36 @@
 						<p>
 							It breaks the retrieved struct data to cache the round's specific SpawnDelay, then iterates through the nested EnemyLayers array, passing the grouped tier and count data into the runtime spawn pipeline to instantiate the correct enemies sequentially.
 						</p>
+					</div>
+
+					<!-- Part 8: Architectural Refactoring: Blueprint-to-C++ Pipeline -->
+					<div style="margin: 1.5em 0;">
+						<h4 style="color: #333; margin-bottom: 0.5em;">8. Architectural Refactoring: Blueprint to C++ Pipeline</h4>
+						
+						<img src="images/Structs_CPP.png" alt="Architectural Refactoring: Blueprint-to-C++ Pipeline" style= "max-width: 700px; width: 100%; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 0.8em;" />
+						<p>
+							These are the core game structures (FST_EnemyGroup and FST_RoundData), with FST_RoundData inheriting directly from FTableRowBase to interface with Unreal Engine’s Data Table system.
+						</p>
+						<p>
+							Engine Performance & Reflection: Declaring them as native USTRUCTs gives direct access to Unreal's fast reflection system without the overhead of asset-loading chains or editor-time interpretation delays.
+						</p>
+						<img src="images/UnpackData.png" alt="Architectural Refactoring: Blueprint-to-C++ Pipeline" style= "max-width: 700px; width: 100%; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 0.8em;" />
+						<p>
+							Contains a native UnpackRoundData function utilising <strong> FindRow<T>() </strong> with a performance-safe debug context string, paired with optimised nested loops to parse enemy counts and populate the runtime queue array.
+						<p>
+						<p>
+							<strong>Eliminating Interpreter Bottlenecks:</strong> Doing nested loops and DataTable lookups in Blueprints creates heavy script VM overhead. Moving this logic to C++ executes it natively, avoiding micro-stutters during round transitions.
+						<p>
+						<p>
+							<strong>Safe Memory Management:</strong> FindRow returns a direct memory pointer to the row data rather than making expensive copies, ensuring safe, lightweight reference handling.
+						<p>
+						<img src="images/Refactored_Blueprint.png" alt="Architectural Refactoring: Blueprint-to-C++ Pipeline" style= "max-width: 1300px; width: 100%; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 0.1em;" />
+						<p>
+							The Blueprint event graph (StartRound), shows how heavy data-parsing and array generation have been compressed into a single clean C++ function node, leaving audio and event dispatchers in the visual script.
+						<p>
+						<p>
+							<strong>Designer Ergonomics:</strong> It keeps the Blueprint graph clean and readable for technical designers, hiding away complex data manipulation behind a single exposed node while maintaining full flexibility for audio and UI triggers.
+						<p>
 					</div>
 					
 					<!-- Part 8: Future Implementations & Scalability-->
